@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Gacha Simulator</string>
+    <string name="play">PLAY</string>
 </resources>

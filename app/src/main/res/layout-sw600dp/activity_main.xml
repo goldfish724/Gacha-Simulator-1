@@ -2,31 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_home"
     android:configChanges="keyboardHidden"
     android:screenOrientation="portrait">
 
-    <ImageView
-        android:id="@+id/leftArrow"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@android:string/untitled"
-        android:scaleType="fitCenter"
-        android:scaleX="-1"
-        android:onClick="selectLeft"
-        app:layout_constraintBottom_toBottomOf="@+id/app"
-        app:layout_constraintEnd_toStartOf="@+id/app"
-        app:layout_constraintTop_toTopOf="@+id/app"
-        app:srcCompat="@drawable/ic_ios_arrow" />
-
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="102dp"
-        android:layout_height="113dp"
+        android:layout_width="169dp"
+        android:layout_height="181dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
@@ -39,26 +24,25 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="232dp"
-        android:layout_height="104dp"
+        android:layout_width="375dp"
+        android:layout_height="163dp"
         android:fontFamily="@font/holtwood_one_sc"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/play"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="68sp"
+        android:textSize="110sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.504"
         tools:text="PLAY" />
 
     <ImageView
         android:id="@+id/app"
-        android:layout_width="105dp"
-        android:layout_height="81dp"
+        android:layout_width="210dp"
+        android:layout_height="162dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
@@ -71,14 +55,28 @@
 
     <ImageView
         android:id="@+id/rightArrow"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
         android:onClick="selectRight"
         app:layout_constraintBottom_toBottomOf="@+id/app"
         app:layout_constraintStart_toEndOf="@+id/app"
+        app:layout_constraintTop_toTopOf="@+id/app"
+        app:srcCompat="@drawable/ic_ios_arrow" />
+
+    <ImageView
+        android:id="@+id/leftArrow"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        android:onClick="selectLeft"
+        app:layout_constraintBottom_toBottomOf="@+id/app"
+        app:layout_constraintEnd_toStartOf="@+id/app"
         app:layout_constraintTop_toTopOf="@+id/app"
         app:srcCompat="@drawable/ic_ios_arrow" />
 </androidx.constraintlayout.widget.ConstraintLayout>
