@@ -24,7 +24,7 @@
         app:srcCompat="@drawable/ic_ios_arrow" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/play_button"
         android:layout_width="102dp"
         android:layout_height="113dp"
         android:adjustViewBounds="true"
@@ -33,12 +33,12 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/play"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/play_button" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/play"
         android:layout_width="232dp"
         android:layout_height="104dp"
         android:fontFamily="@font/holtwood_one_sc"
