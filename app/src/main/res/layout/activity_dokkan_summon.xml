@@ -8,49 +8,6 @@
     android:isScrollContainer="false"
     tools:context=".dokkan_summon">
 
-    <TextView
-        android:id="@+id/summon_history"
-        android:layout_width="174dp"
-        android:layout_height="31dp"
-        android:fontFamily="@font/archivo_black"
-        android:gravity="center"
-        android:maxLines="1"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#825858"
-        android:textColorLink="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot8"
-        tools:text="Summon History" />
-
-    <TextView
-        android:id="@+id/stone_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/archivo_black"
-        android:gravity="center"
-        android:layoutDirection="ltr"
-        android:maxWidth="90dp"
-        android:maxLines="1"
-        android:textAlignment="viewStart"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#825858"
-        android:textColorLink="#FFFFFF"
-        android:textDirection="ltr"
-        android:textSize="24sp"
-        app:autoSizeMinTextSize="5sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        tools:text="0"
-        tools:ignore="RtlCompat" />
-
     <ImageView
         android:id="@+id/slot1"
         android:layout_width="58dp"
@@ -61,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintEnd_toStartOf="@+id/slot2"
         app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot2"
@@ -73,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintEnd_toStartOf="@+id/slot3"
         app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot3"
@@ -85,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/single_button"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot4"
@@ -97,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintStart_toEndOf="@+id/slot3"
         app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot5"
@@ -109,7 +66,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintStart_toEndOf="@+id/slot4"
         app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot6"
@@ -121,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintEnd_toStartOf="@+id/slot7"
         app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot7"
@@ -133,19 +90,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintEnd_toStartOf="@+id/slot8"
         app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
-
-    <ImageView
-        android:id="@+id/slot9"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="15dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/slot8"
-        app:layout_constraintStart_toEndOf="@+id/slot8"
-        app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot8"
@@ -157,7 +102,19 @@
         app:layout_constraintEnd_toEndOf="@+id/slot3"
         app:layout_constraintStart_toStartOf="@+id/slot3"
         app:layout_constraintTop_toBottomOf="@+id/slot3"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
+
+    <ImageView
+        android:id="@+id/slot9"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot8"
+        app:layout_constraintStart_toEndOf="@+id/slot8"
+        app:layout_constraintTop_toTopOf="@+id/slot8"
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/slot10"
@@ -169,7 +126,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintStart_toEndOf="@+id/slot9"
         app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/base_buu_ultimate_pre_dokk_int" />
+        app:srcCompat="@drawable/1008100" />
 
     <ImageView
         android:id="@+id/banner_image"
@@ -228,18 +185,7 @@
         app:layout_constraintStart_toStartOf="@+id/banner_image" />
 
     <ImageButton
-        android:id="@+id/mute_button"
-        android:layout_width="69dp"
-        android:layout_height="54dp"
-        android:adjustViewBounds="true"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_non_mute_icon" />
-
-    <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/home_button"
         android:layout_width="90dp"
         android:layout_height="60dp"
         android:layout_marginBottom="10dp"
@@ -251,32 +197,77 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_home_button" />
 
-    <TextView
-        android:id="@+id/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:fontFamily="@font/archivo_black"
-        android:textColor="#FF0000"
-        android:textColorHighlight="#825858"
-        android:textColorLink="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton5"
-        tools:text="Reset" />
-
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="37dp"
         android:layout_height="42dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton5"
         app:srcCompat="@drawable/dragon_stone" />
+
+    <TextView
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Reset"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/summon_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_black"
+        android:text="Summon History"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slot8" />
+
+    <TextView
+        android:id="@+id/stones_used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+        android:maxWidth="100dp"
+        android:maxLines="1"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#F4F4F4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+    <ImageButton
+        android:id="@+id/volume_control"
+        android:layout_width="37dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/no_mute" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

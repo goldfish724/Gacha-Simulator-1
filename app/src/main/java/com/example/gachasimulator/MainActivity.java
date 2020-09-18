@@ -1,8 +1,5 @@
 package com.example.gachasimulator;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,7 +10,10 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     boolean state;
@@ -42,18 +42,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         background_icon_id = new int[]{R.drawable.dokkan_home,R.drawable.legends_home,R.drawable.naruto_home,R.drawable.sds_home_};
         app_icon_id = new int[]{R.drawable.dokkan_app_icon,R.drawable.legends_app_icon,R.drawable.naruto_app_icon,R.drawable.seven_deadly_sins_app_icon};
 
-        play = (TextView)findViewById(R.id.play);
-        play_button = (ImageButton)findViewById(R.id.play_button);
-        right_arrow = (ImageView) findViewById(R.id.rightArrow);
-        left_arrow = (ImageView) findViewById(R.id.leftArrow);
-        main = (ConstraintLayout)findViewById(R.id.background);
-        app_logo = (ImageView)findViewById((R.id.app));
+        play = findViewById(R.id.play);
+        play_button = findViewById(R.id.play_button);
+        right_arrow = findViewById(R.id.rightArrow);
+        left_arrow = findViewById(R.id.leftArrow);
+        main = findViewById(R.id.background);
+        app_logo = findViewById((R.id.app));
 
         play.setOnClickListener(this);
         play_button.setOnClickListener(this);
+
+
         background_audio= MediaPlayer.create(MainActivity.this,audio_id[selection]);
         background_audio.setLooping(true);
         background_audio.start();
+
+
     }
 
     public void selectRight(View v) {
@@ -75,17 +79,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main.setBackgroundResource(background_icon_id[selection]);
     }
     public void setMedia() {
-        background_audio.reset();
+        background_audio.pause();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                background_audio.reset();
-                background_audio= MediaPlayer.create(MainActivity.this,audio_id[selection]);
-                background_audio.setLooping(true);
-                if(state == true)
-                background_audio.start();
-            }
-        },1500);
+                    background_audio.reset();
+                    background_audio = MediaPlayer.create(MainActivity.this, audio_id[selection]);
+                    background_audio.setLooping(true);
+                    if (state == true)
+                        background_audio.start();
+                }
+        },500);
 
     }
     public void onPause() {
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view == play || view == play_button)
         {
             Intent i = new Intent(MainActivity.this, dokkan_summon.class);
+            background_audio.release();
             startActivity(i);
             finish();
         }
