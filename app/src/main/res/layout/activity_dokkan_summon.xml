@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintEnd_toStartOf="@+id/slot2"
         app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/1008100" />
+        app:srcCompat="@drawable/card_1002620" />
 
     <ImageView
         android:id="@+id/slot2"
@@ -29,8 +29,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintEnd_toStartOf="@+id/slot3"
-        app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
 
     <ImageView
         android:id="@+id/slot3"
@@ -41,8 +40,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/single_button"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toBottomOf="@+id/single_button" />
 
     <ImageView
         android:id="@+id/slot4"
@@ -53,8 +51,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintStart_toEndOf="@+id/slot3"
-        app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
 
     <ImageView
         android:id="@+id/slot5"
@@ -65,8 +62,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintStart_toEndOf="@+id/slot4"
-        app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
 
     <ImageView
         android:id="@+id/slot6"
@@ -77,8 +73,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintEnd_toStartOf="@+id/slot7"
-        app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
 
     <ImageView
         android:id="@+id/slot7"
@@ -89,8 +84,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintEnd_toStartOf="@+id/slot8"
-        app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
 
     <ImageView
         android:id="@+id/slot8"
@@ -101,8 +95,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@+id/slot3"
         app:layout_constraintStart_toStartOf="@+id/slot3"
-        app:layout_constraintTop_toBottomOf="@+id/slot3"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toBottomOf="@+id/slot3" />
 
     <ImageView
         android:id="@+id/slot9"
@@ -113,8 +106,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintStart_toEndOf="@+id/slot8"
-        app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
 
     <ImageView
         android:id="@+id/slot10"
@@ -125,8 +117,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot8"
         app:layout_constraintStart_toEndOf="@+id/slot9"
-        app:layout_constraintTop_toTopOf="@+id/slot8"
-        app:srcCompat="@drawable/1008100" />
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
 
     <ImageView
         android:id="@+id/banner_image"

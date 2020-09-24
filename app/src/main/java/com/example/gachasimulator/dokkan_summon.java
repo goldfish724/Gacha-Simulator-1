@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class dokkan_summon extends AppCompatActivity implements View.OnClickListener{
     MediaPlayer background_audio2;
     ImageButton mute_button,home_button;
+    dokkan_banner banner1;
     static ImageView[] unitsSlots;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
