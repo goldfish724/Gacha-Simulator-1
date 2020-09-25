@@ -1,17 +1,18 @@
 package com.example.gachasimulator;
 
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
-public class dokkan_banner implements View.OnClickListener {
+public class DokkanBanner {
     int image;
     String name;
     ImageView[] unitSlots = dokkan_summon.getUnitSlots();
     ArrayList<Card> featured, unfeatured;
-    private static final ArrayList<Card> NORMALPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1000010_1, 1000010), new Card(R.drawable.thum_1000020_1, 1000020), new Card(R.drawable.thum_1000840_1, 1000840),
+    Card poop = new Card(R.drawable.poop_emoji, 0000000);
+    public static final ArrayList<Card> NORMALPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1000010_1, 1000010), new Card(R.drawable.thum_1000020_1, 1000020), new Card(R.drawable.thum_1000840_1, 1000840),
             new Card(R.drawable.thum_1001390_1, 1001390), new Card(R.drawable.thum_1001400_1, 1001400), new Card(R.drawable.thum_1001480_1, 1001480),
             new Card(R.drawable.thum_1001490_1, 1001490), new Card(R.drawable.thum_1001590_1, 1001590), new Card(R.drawable.thum_1001630_1, 1001630),
             new Card(R.drawable.thum_1001690_1, 1001690), new Card(R.drawable.thum_1001700_1, 1001700), new Card(R.drawable.thum_1001790_1, 1001790),
@@ -59,44 +60,107 @@ public class dokkan_banner implements View.OnClickListener {
             new Card(R.drawable.card_1019030_thumb, 1019030), new Card(R.drawable.card_1019270_thumb, 1019270), new Card(R.drawable.card_1019290_thumb, 1019290), new Card(R.drawable.card_1019350_thumb, 1019350), new Card(R.drawable.card_1019830_thumb, 1019830),
             new Card(R.drawable.thum_2000170_1, 2000170), new Card(R.drawable.thum_2000230_1, 2000230), new Card(R.drawable.thum_2000240_1, 2000240), new Card(R.drawable.thum_2000250_1, 2000250)));
 
-    private static ArrayList<Card> DOKKANFESTPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1002800_1, 1002800), new Card(R.drawable.card_1003070, 1003070), new Card(R.drawable.thum_1003240_1, 1003240)));
-    private static final ArrayList<Card> SUMMONABLELRPOOL = null;
+    public static ArrayList<Card> DOKKANFESTPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1002800_1, 1002800), new Card(R.drawable.card_1003070, 1003070), new Card(R.drawable.thum_1003240_1, 1003240), new Card(R.drawable.thum_1003300_1, 1003300), new Card(R.drawable.thum_1003320_1, 1003320),
+            new Card(R.drawable.thum_1003770_1, 1003770), new Card(R.drawable.thum_1004220_1, 1004220), new Card(R.drawable.thum_1005270_1, 1005270), new Card(R.drawable.thumb_1005630, 1005630), new Card(R.drawable.card_1005990, 1005990), new Card(R.drawable.thum_1006410, 1006410),
+            new Card(R.drawable.thum_1006680_1, 1006680), new Card(R.drawable.thumb_1007450, 1007450), new Card(R.drawable.thum_1007920, 1007920), new Card(R.drawable.card_1007930, 1007930), new Card(R.drawable.card_1008100, 1008100), new Card(R.drawable.thumb_1008410, 1008410),
+            new Card(R.drawable.card_1008730, 1008730), new Card(R.drawable.card_1008810, 1008810), new Card(R.drawable.thum_1008840glb, 1008840), new Card(R.drawable.thum_1009080, 10090800), new Card(R.drawable.thum_1009320, 1009320), new Card(R.drawable.thum_1009340, 1009340),
+            new Card(R.drawable.thum_1009420, 1009420), new Card(R.drawable.card_1009570, 1009570), new Card(R.drawable.card_1009600, 1009600), new Card(R.drawable.card_1009650, 1009650), new Card(R.drawable.thum_1009750, 1009750), new Card(R.drawable.thum_1009820, 1009820),
+            new Card(R.drawable.thum_1010240, 1010240), new Card(R.drawable.card_1010840, 1010840), new Card(R.drawable.card_1010860, 1010860), new Card(R.drawable.card_1011050, 1011050), new Card(R.drawable.card_1011160, 1011160), new Card(R.drawable.card_1011290, 1011290),
+            new Card(R.drawable.card_1011310, 1011310), new Card(R.drawable.thumb_1011770, 1011770), new Card(R.drawable.card_1011810, 1011810), new Card(R.drawable.card_1012020, 1012020), new Card(R.drawable.card_1012370, 1012370), new Card(R.drawable.thumb_1012580, 1012580), new Card(R.drawable.card_1012730, 1012730), new Card(R.drawable.card_1012750, 1012750),
+            new Card(R.drawable.thumb_1013480, 1013480), new Card(R.drawable.card_1013560_thumb, 1013560), new Card(R.drawable.thumb_1013820, 1013280), new Card(R.drawable.thumb_1013850, 1013850), new Card(R.drawable.card_1014120, 1014120), new Card(R.drawable.thumb_1014810, 1014810),
+            new Card(R.drawable.thumb_1014900, 1014900), new Card(R.drawable.card_1015040_thumb, 1015040), new Card(R.drawable.thumb_1015150, 1015150), new Card(R.drawable.card_1015360_thumb, 1015360), new Card(R.drawable.card_1015460_thumb, 1015460), new Card(R.drawable.card_1015660_thumb, 1015660),
+            new Card(R.drawable.card_1015960_thumb, 1015960), new Card(R.drawable.card_1015990_thumb, 1015990), new Card(R.drawable.card_1016500_thumb, 1016500), new Card(R.drawable.card_1016560_thumb, 1016560), new Card(R.drawable.card_1017170_thumb, 1017170), new Card(R.drawable.card_1017480_thumb, 1017480),
+            new Card(R.drawable.thum_2000640_1, 2000640), new Card(R.drawable.card_1018770_thumb, 1018770), new Card(R.drawable.card_1018110_thumb, 1018110), new Card(R.drawable.card_1018180_thumb, 1018180), new Card(R.drawable.thumb_1012880, 1012880), new Card(R.drawable.card_1018600_thumb, 1018600),
+            new Card(R.drawable.card_1018630_thumb, 1018630), new Card(R.drawable.card_1018750_thumb, 1018750), new Card(R.drawable.card_1015760_thumb, 1015760), new Card(R.drawable.card_1017110_thumb, 1017110), new Card(R.drawable.card_1015740_thumb, 1015740), new Card(R.drawable.card_1017070_thumb, 1017070),
+            new Card(R.drawable.card_1017880_thumb, 1017880), new Card(R.drawable.thumb_1012910, 1012910), new Card(R.drawable.card_1020350_thumb, 1020350), new Card(R.drawable.card_1018530_thumb, 1018530), new Card(R.drawable.card_1019330_thumb, 1019330), new Card(R.drawable.card_1018260_thumb, 1018260),
+            new Card(R.drawable.card_1017610_thumb, 1017610), new Card(R.drawable.card_1019130_thumb, 1019130), new Card(R.drawable.card_1019970_thumb, 1019970), new Card(R.drawable.card_1016790_thumb, 1016790), new Card(R.drawable.card_1019620_thumb, 1019620), new Card(R.drawable.card_1019580_thumb, 1019580),
+            new Card(R.drawable.card_1020080_thumb, 1020080), new Card(R.drawable.card_1019730_thumb, 1019730), new Card(R.drawable.card_1020440_thumb, 1020440)));
 
-    public dokkan_banner(int bannerImage, ArrayList<Card> featuredPool, ArrayList<Card> unfeaturedPool, String name) {
+    public static final ArrayList<Card> SUMMONABLELRPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thumb_1014920, 1014920), new Card(R.drawable.thumb_1014000, 1014000), new Card(R.drawable.thumb_1012140, 1012140), new Card(R.drawable.thum_1011620, 1011620), new Card(R.drawable.card_1020200_thumb, 1020200),
+            new Card(R.drawable.card_1019800_thumb, 1019800), new Card(R.drawable.card_1019380_thumb, 1019380), new Card(R.drawable.card_1018980_thumb, 1018980), new Card(R.drawable.card_1018860_thumb, 1018860), new Card(R.drawable.card_1018470_thumb, 1018470), new Card(R.drawable.card_1018230_thumb, 1018230),
+            new Card(R.drawable.card_1018010_thumb, 1018010), new Card(R.drawable.card_1016850_thumb, 1016850), new Card(R.drawable.card_1016820_thumb, 1016820), new Card(R.drawable.card_1016380, 1016380), new Card(R.drawable.card_1016350_thumb, 1016350), new Card(R.drawable.card_1015600_thumb, 1015600),
+            new Card(R.drawable.card_1014950_thumb, 1014950), new Card(R.drawable.card_1013750, 1013750), new Card(R.drawable.card_1011120, 1011120), new Card(R.drawable.card_1010420, 1010420), new Card(R.drawable.card_1010150, 1010150), new Card(R.drawable.card_1010050, 1010050),
+            new Card(R.drawable.card_1007830, 1007830), new Card(R.drawable.card_1005010_thumb, 1005010)));
+
+    public DokkanBanner(int bannerImage, ArrayList<Card> featuredPool, ArrayList<Card> unfeaturedPool, String name) {
         image = bannerImage;
         featured = featuredPool;
         unfeatured = unfeaturedPool;
         this.name = name;
     }
 
-    public ArrayList<Card> customizePool(int[] removeID, int[] addID, ArrayList<Card> pool) {
+    //Fix addID algorithm
+    public static ArrayList<Card> customizePool(ArrayList<Integer> removeID, ArrayList<Integer> addID, ArrayList<Card> pool) {
         boolean contains;
         ArrayList<Card> v = pool;
-        for (int i = 0; i < removeID.length; i++) {
+        for (int item : removeID) {
             for (Card card : v) {
-                if (removeID[i] == card.getCardID()) {
+                if (item == card.getCardID()) {
                     v.remove(card);
                     break;
                 }
             }
         }
-        for (int i = 0; i < addID.length; i++) {
+        for (int value : addID) {
             Card temp = null;
             contains = false;
             for (Card card : v) {
-                if (card.getCardID() == addID[i]) {
+                if (card.getCardID() == value) {
                     contains = true;
                     break;
                 }
                 temp = card;
             }
-            if (contains == false)
+            if (!contains)
                 v.add(temp);
         }
         return v;
     }
-    @Override
-    public void onClick(View view) {
 
+    //When searching for cards search through all three pools (Dokkanfest, normal, summonablelrs)
+    public static Card findCardById(ArrayList<Card> pool, int id) {
+        Card card = null;
+        for (Card c : pool) {
+            if (c.getCardID() == id) {
+                card = c;
+                break;
+            }
+        }
+        return card;
     }
+
+    //When searching for cards search through all three pools (Dokkanfest, normal, summonablelrs)
+    public static ArrayList<Card> findCardsById(ArrayList<Integer> ids, ArrayList<Card> pool) {
+        ArrayList<Card> result = new ArrayList<>();
+        for (Card c : pool) {
+            if (ids.contains(c.getCardID()))
+                result.add(c);
+        }
+        return result;
+    }
+
+    public Card[] summon() {
+        int roll = 0;
+        Random rng = new Random();
+        boolean flip = false;
+        Card[] results = new Card[10];
+        for (int i = 0; i < 9; i++) {
+            roll = rng.nextInt(100) + 1;
+            if (roll >= 1 && roll <= 5) {
+                flip = rng.nextBoolean();
+                if (!flip)
+                    results[i] = featured.get(rng.nextInt(featured.size()));
+                else
+                    results[i] = unfeatured.get(rng.nextInt(unfeatured.size()));
+            } else
+                results[i] = poop;
+        }
+        roll = rng.nextInt(100) + 1;
+        if (roll >= 1 && roll <= 5)
+            results[9] = featured.get(rng.nextInt(featured.size()));
+        else
+            results[9] = unfeatured.get(rng.nextInt(unfeatured.size()));
+        return results;
+    }
+
 }

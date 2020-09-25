@@ -17,8 +17,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/slot3"
         app:layout_constraintEnd_toStartOf="@+id/slot2"
-        app:layout_constraintTop_toTopOf="@+id/slot3"
-        app:srcCompat="@drawable/card_1002620" />
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
 
     <ImageView
         android:id="@+id/slot2"
@@ -130,7 +129,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.175"
-        app:srcCompat="@drawable/dokkan_festival_8430" />
+        app:srcCompat="@drawable/dokkan_festival_8442" />
 
     <ImageButton
         android:id="@+id/single_button"

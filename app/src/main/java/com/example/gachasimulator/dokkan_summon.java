@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class dokkan_summon extends AppCompatActivity implements View.OnClickListener{
     MediaPlayer background_audio2;
     ImageButton mute_button,home_button;
-    dokkan_banner banner1;
+    DokkanBanner banner1;
     static ImageView[] unitsSlots;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class dokkan_summon extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dokkan_summon);
 
+//        banner1 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<Integer>(Arrays.asList()),DokkanBanner.DOKKANFESTPOOL),DokkanBanner.NORMALPOOL,"Dokkan Festival (A) 8442");
         background_audio2= MediaPlayer.create(dokkan_summon.this,R.raw.dokkan_theme_audio);
         background_audio2.setLooping(true);
         background_audio2.start();
