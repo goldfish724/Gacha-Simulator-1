@@ -11,7 +11,8 @@ public class DokkanBanner {
     String name;
     ImageView[] unitSlots = dokkan_summon.getUnitSlots();
     ArrayList<Card> featured, unfeatured;
-    Card poop = new Card(R.drawable.poop_emoji, 0000000);
+    private final Card RARE = new Card(R.drawable.dokkan_rare_icon, 0);
+    private final Card SR = new Card(R.drawable.dokkan_rare_icon, 1);
     public static final ArrayList<Card> NORMALPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1000010_1, 1000010), new Card(R.drawable.thum_1000020_1, 1000020), new Card(R.drawable.thum_1000840_1, 1000840),
             new Card(R.drawable.thum_1001390_1, 1001390), new Card(R.drawable.thum_1001400_1, 1001400), new Card(R.drawable.thum_1001480_1, 1001480),
             new Card(R.drawable.thum_1001490_1, 1001490), new Card(R.drawable.thum_1001590_1, 1001590), new Card(R.drawable.thum_1001630_1, 1001630),
@@ -89,49 +90,41 @@ public class DokkanBanner {
         this.name = name;
     }
 
-    //Fix addID algorithm
     public static ArrayList<Card> customizePool(ArrayList<Integer> removeID, ArrayList<Integer> addID, ArrayList<Card> pool) {
-        boolean contains;
-        ArrayList<Card> v = pool;
-        for (int item : removeID) {
-            for (Card card : v) {
-                if (item == card.getCardID()) {
-                    v.remove(card);
-                    break;
+        if (removeID != null) {
+            for (int item : removeID)
+                for (Card card : pool) {
+                    if (item == card.getCardID()) {
+                        pool.remove(card);
+                        break;
+                    }
                 }
+        }
+        if (addID != null) {
+            for (int value : addID) {
+                if (!pool.contains(findCardById(value)))
+                    pool.add(findCardById((value)));
             }
         }
-        for (int value : addID) {
-            Card temp = null;
-            contains = false;
-            for (Card card : v) {
-                if (card.getCardID() == value) {
-                    contains = true;
-                    break;
-                }
-                temp = card;
-            }
-            if (!contains)
-                v.add(temp);
-        }
-        return v;
+        return pool;
     }
 
-    //When searching for cards search through all three pools (Dokkanfest, normal, summonablelrs)
-    public static Card findCardById(ArrayList<Card> pool, int id) {
-        Card card = null;
+    public static Card findCardById(int id) {
+        ArrayList<Card> pool = SUMMONABLELRPOOL;
+        pool.addAll(DOKKANFESTPOOL);
+        pool.addAll(NORMALPOOL);
         for (Card c : pool) {
-            if (c.getCardID() == id) {
-                card = c;
-                break;
-            }
+            if (c.getCardID() == id)
+                return c;
         }
-        return card;
+        return null;
     }
 
-    //When searching for cards search through all three pools (Dokkanfest, normal, summonablelrs)
-    public static ArrayList<Card> findCardsById(ArrayList<Integer> ids, ArrayList<Card> pool) {
+    public static ArrayList<Card> findCardsById(ArrayList<Integer> ids) {
         ArrayList<Card> result = new ArrayList<>();
+        ArrayList<Card> pool = SUMMONABLELRPOOL;
+        pool.addAll(DOKKANFESTPOOL);
+        pool.addAll(NORMALPOOL);
         for (Card c : pool) {
             if (ids.contains(c.getCardID()))
                 result.add(c);
@@ -146,14 +139,16 @@ public class DokkanBanner {
         Card[] results = new Card[10];
         for (int i = 0; i < 9; i++) {
             roll = rng.nextInt(100) + 1;
-            if (roll >= 1 && roll <= 5) {
+            if (roll >= 1 && roll <= 10) {
                 flip = rng.nextBoolean();
                 if (!flip)
                     results[i] = featured.get(rng.nextInt(featured.size()));
                 else
                     results[i] = unfeatured.get(rng.nextInt(unfeatured.size()));
-            } else
-                results[i] = poop;
+            } else if (roll > 10 && roll <= 70)
+                results[i] = SR;
+            else
+                results[i] = RARE;
         }
         roll = rng.nextInt(100) + 1;
         if (roll >= 1 && roll <= 5)

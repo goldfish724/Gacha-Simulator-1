@@ -11,6 +11,10 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class dokkan_summon extends AppCompatActivity implements View.OnClickListener{
     MediaPlayer background_audio2;
     ImageButton mute_button,home_button;
@@ -24,16 +28,17 @@ public class dokkan_summon extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dokkan_summon);
 
-//        banner1 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<Integer>(Arrays.asList()),DokkanBanner.DOKKANFESTPOOL),DokkanBanner.NORMALPOOL,"Dokkan Festival (A) 8442");
-        background_audio2= MediaPlayer.create(dokkan_summon.this,R.raw.dokkan_theme_audio);
+        DokkanBanner df_8442 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020440, 1020270, 1019130, 1018750, 1017880, 1015740, 1015150, 1012880, 1012580, 1008410))),
+                DokkanBanner.customizePool(new ArrayList<Integer>(Collections.singletonList(1020520)), null, DokkanBanner.NORMALPOOL), "DOKKAN FESTIVAL (A) 8442");
+        background_audio2 = MediaPlayer.create(dokkan_summon.this, R.raw.dokkan_theme_audio);
         background_audio2.setLooping(true);
         background_audio2.start();
 
         home_button = findViewById(R.id.home_button);
         home_button.setOnClickListener(this);
 
-        unitsSlots = new ImageView[]{findViewById(R.id.slot1), findViewById(R.id.slot2),findViewById(R.id.slot3),findViewById(R.id.slot4),findViewById(R.id.slot5),
-                                    findViewById(R.id.slot6),findViewById(R.id.slot7),findViewById(R.id.slot8),findViewById(R.id.slot9),findViewById(R.id.slot10),};
+        unitsSlots = new ImageView[]{findViewById(R.id.slot1), findViewById(R.id.slot2), findViewById(R.id.slot3), findViewById(R.id.slot4), findViewById(R.id.slot5),
+                findViewById(R.id.slot6), findViewById(R.id.slot7), findViewById(R.id.slot8), findViewById(R.id.slot9), findViewById(R.id.slot10),};
 
         mute_button = findViewById(R.id.volume_control);
         mute_button.setOnClickListener(this);
