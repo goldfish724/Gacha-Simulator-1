@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,10 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener {
     boolean state;
+    GestureDetector detector;
     MediaPlayer background_audio;
-    ImageView right_arrow,left_arrow,app_logo;
+    ImageView right_arrow, left_arrow, app_logo;
     ImageButton play_button;
     TextView play;
     ConstraintLayout main;
@@ -35,12 +38,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         selection = 0;
-
         state = true;
 
-        audio_id = new int[]{R.raw.dokkan_theme_audio,R.raw.legends_theme_audio,R.raw.naruto_blazing_theme_audio,R.raw.seven_deadly_sins_theme_audio};
-        background_icon_id = new int[]{R.drawable.dokkan_home,R.drawable.legends_home,R.drawable.naruto_home,R.drawable.sds_home_};
-        app_icon_id = new int[]{R.drawable.dokkan_app_icon,R.drawable.legends_app_icon,R.drawable.naruto_app_icon,R.drawable.seven_deadly_sins_app_icon};
+        detector = new GestureDetector(this, this);
+
+        audio_id = new int[]{R.raw.dokkan_theme_audio, R.raw.legends_theme_audio, R.raw.genshin_impact_audio, R.raw.seven_deadly_sins_theme_audio};
+        background_icon_id = new int[]{R.drawable.dokkan_home, R.drawable.legends_home, R.drawable.genshin_impact_home, R.drawable.sds_home_};
+        app_icon_id = new int[]{R.drawable.dokkan_app_icon, R.drawable.legends_app_icon, R.drawable.genshin_impact_app, R.drawable.seven_deadly_sins_app_icon};
 
         play = findViewById(R.id.play);
         play_button = findViewById(R.id.play_button);
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         play.setOnClickListener(this);
         play_button.setOnClickListener(this);
+        main.setOnTouchListener(this);
 
 
         background_audio= MediaPlayer.create(MainActivity.this,audio_id[selection]);
@@ -86,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     background_audio.reset();
                     background_audio = MediaPlayer.create(MainActivity.this, audio_id[selection]);
                     background_audio.setLooping(true);
-                    if (state == true)
-                        background_audio.start();
+                if (state)
+                    background_audio.start();
                 }
         },500);
 
@@ -103,17 +108,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         if(!background_audio.isPlaying())
             background_audio.start();
-        else
-            return;
     }
+
     @Override
     public void onClick(View view) {
-        if(view == play || view == play_button)
-        {
+        if (view == play || view == play_button) {
             Intent i = new Intent(MainActivity.this, dokkan_summon.class);
             background_audio.release();
             startActivity(i);
             finish();
         }
     }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        detector.onTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionDown, MotionEvent motionEnd, float vX, float vY) {
+        if (Math.abs(motionDown.getX() - motionEnd.getX()) >= 150 && Math.abs(vX) >= 750) {
+            if (motionDown.getX() - motionEnd.getX() < 0) {
+                if (selection == 3)
+                    selection = 0;
+                else
+                    selection++;
+            } else if (motionDown.getX() - motionEnd.getX() > 0) {
+                if (selection == 0)
+                    selection = 3;
+                else
+                    selection--;
+            }
+            setMedia();
+            app_logo.setImageResource(app_icon_id[selection]);
+            main.setBackgroundResource(background_icon_id[selection]);
+            return true;
+        }
+        return false;
+    }
+
+
 }

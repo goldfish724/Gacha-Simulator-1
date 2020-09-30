@@ -1,7 +1,5 @@
 package com.example.gachasimulator;
 
-import android.widget.ImageView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -9,10 +7,9 @@ import java.util.Random;
 public class DokkanBanner {
     int image;
     String name;
-    ImageView[] unitSlots = dokkan_summon.getUnitSlots();
-    ArrayList<Card> featured, unfeatured;
+    public ArrayList<Card> featured, unfeatured;
     private final Card RARE = new Card(R.drawable.dokkan_rare_icon, 0);
-    private final Card SR = new Card(R.drawable.dokkan_rare_icon, 1);
+    private final Card SR = new Card(R.drawable.dokkan_sr_icon, 1);
     public static final ArrayList<Card> NORMALPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1000010_1, 1000010), new Card(R.drawable.thum_1000020_1, 1000020), new Card(R.drawable.thum_1000840_1, 1000840),
             new Card(R.drawable.thum_1001390_1, 1001390), new Card(R.drawable.thum_1001400_1, 1001400), new Card(R.drawable.thum_1001480_1, 1001480),
             new Card(R.drawable.thum_1001490_1, 1001490), new Card(R.drawable.thum_1001590_1, 1001590), new Card(R.drawable.thum_1001630_1, 1001630),
@@ -61,7 +58,7 @@ public class DokkanBanner {
             new Card(R.drawable.card_1019030_thumb, 1019030), new Card(R.drawable.card_1019270_thumb, 1019270), new Card(R.drawable.card_1019290_thumb, 1019290), new Card(R.drawable.card_1019350_thumb, 1019350), new Card(R.drawable.card_1019830_thumb, 1019830),
             new Card(R.drawable.thum_2000170_1, 2000170), new Card(R.drawable.thum_2000230_1, 2000230), new Card(R.drawable.thum_2000240_1, 2000240), new Card(R.drawable.thum_2000250_1, 2000250)));
 
-    public static ArrayList<Card> DOKKANFESTPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1002800_1, 1002800), new Card(R.drawable.card_1003070, 1003070), new Card(R.drawable.thum_1003240_1, 1003240), new Card(R.drawable.thum_1003300_1, 1003300), new Card(R.drawable.thum_1003320_1, 1003320),
+    public static final ArrayList<Card> DOKKANFESTPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1002800_1, 1002800), new Card(R.drawable.card_1003070, 1003070), new Card(R.drawable.thum_1003240_1, 1003240), new Card(R.drawable.thum_1003300_1, 1003300), new Card(R.drawable.thum_1003320_1, 1003320),
             new Card(R.drawable.thum_1003770_1, 1003770), new Card(R.drawable.thum_1004220_1, 1004220), new Card(R.drawable.thum_1005270_1, 1005270), new Card(R.drawable.thumb_1005630, 1005630), new Card(R.drawable.card_1005990, 1005990), new Card(R.drawable.thum_1006410, 1006410),
             new Card(R.drawable.thum_1006680_1, 1006680), new Card(R.drawable.thumb_1007450, 1007450), new Card(R.drawable.thum_1007920, 1007920), new Card(R.drawable.card_1007930, 1007930), new Card(R.drawable.card_1008100, 1008100), new Card(R.drawable.thumb_1008410, 1008410),
             new Card(R.drawable.card_1008730, 1008730), new Card(R.drawable.card_1008810, 1008810), new Card(R.drawable.thum_1008840glb, 1008840), new Card(R.drawable.thum_1009080, 10090800), new Card(R.drawable.thum_1009320, 1009320), new Card(R.drawable.thum_1009340, 1009340),
@@ -82,7 +79,6 @@ public class DokkanBanner {
             new Card(R.drawable.card_1018010_thumb, 1018010), new Card(R.drawable.card_1016850_thumb, 1016850), new Card(R.drawable.card_1016820_thumb, 1016820), new Card(R.drawable.card_1016380, 1016380), new Card(R.drawable.card_1016350_thumb, 1016350), new Card(R.drawable.card_1015600_thumb, 1015600),
             new Card(R.drawable.card_1014950_thumb, 1014950), new Card(R.drawable.card_1013750, 1013750), new Card(R.drawable.card_1011120, 1011120), new Card(R.drawable.card_1010420, 1010420), new Card(R.drawable.card_1010150, 1010150), new Card(R.drawable.card_1010050, 1010050),
             new Card(R.drawable.card_1007830, 1007830), new Card(R.drawable.card_1005010_thumb, 1005010)));
-
     public DokkanBanner(int bannerImage, ArrayList<Card> featuredPool, ArrayList<Card> unfeaturedPool, String name) {
         image = bannerImage;
         featured = featuredPool;
@@ -109,8 +105,45 @@ public class DokkanBanner {
         return pool;
     }
 
+    public static ArrayList<Card> customizePool(ArrayList<Integer> removeID, ArrayList<Integer> addID, ArrayList<Card> pool, ArrayList<Integer> removeID2, ArrayList<Integer> addID2, ArrayList<Card> pool2) {
+        if (removeID != null) {
+            for (int item : removeID)
+                for (Card card : pool) {
+                    if (item == card.getCardID()) {
+                        pool.remove(card);
+                        break;
+                    }
+                }
+        }
+        if (addID != null) {
+            for (int value : addID) {
+                if (!pool.contains(findCardById(value))) {
+                    pool.add(findCardById((value)));
+                }
+            }
+        }
+        if (removeID2 != null) {
+            for (int item : removeID2)
+                for (Card card : pool2) {
+                    if (item == card.getCardID()) {
+                        pool2.remove(card);
+                        break;
+                    }
+                }
+        }
+        if (addID2 != null) {
+            for (int value : addID2) {
+                if (!pool2.contains(findCardById(value)))
+                    pool2.add(findCardById((value)));
+            }
+        }
+        pool.addAll(pool2);
+        return pool;
+    }
+
     public static Card findCardById(int id) {
-        ArrayList<Card> pool = SUMMONABLELRPOOL;
+        ArrayList<Card> pool = new ArrayList<>();
+        pool.addAll(SUMMONABLELRPOOL);
         pool.addAll(DOKKANFESTPOOL);
         pool.addAll(NORMALPOOL);
         for (Card c : pool) {
@@ -122,7 +155,8 @@ public class DokkanBanner {
 
     public static ArrayList<Card> findCardsById(ArrayList<Integer> ids) {
         ArrayList<Card> result = new ArrayList<>();
-        ArrayList<Card> pool = SUMMONABLELRPOOL;
+        ArrayList<Card> pool = new ArrayList<>();
+        pool.addAll(SUMMONABLELRPOOL);
         pool.addAll(DOKKANFESTPOOL);
         pool.addAll(NORMALPOOL);
         for (Card c : pool) {
@@ -132,10 +166,10 @@ public class DokkanBanner {
         return result;
     }
 
-    public Card[] summon() {
-        int roll = 0;
+    public Card[] multiSummon() {
+        int roll;
         Random rng = new Random();
-        boolean flip = false;
+        boolean flip;
         Card[] results = new Card[10];
         for (int i = 0; i < 9; i++) {
             roll = rng.nextInt(100) + 1;
@@ -158,4 +192,28 @@ public class DokkanBanner {
         return results;
     }
 
+    public Card singleSummon() {
+        int roll;
+        Random rng = new Random();
+        boolean flip;
+        roll = rng.nextInt(100) + 1;
+        if (roll >= 1 && roll <= 10) {
+            flip = rng.nextBoolean();
+            if (!flip)
+                return featured.get(rng.nextInt(featured.size()));
+            else
+                return unfeatured.get(rng.nextInt(unfeatured.size()));
+        } else if (roll > 10 && roll <= 70)
+            return SR;
+        else
+            return RARE;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
