@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView right_arrow, left_arrow, app_logo;
     ImageButton play_button;
     TextView play;
+    Toast shoutOut;
     ConstraintLayout main;
     int[] audio_id;
     int[] app_icon_id;
@@ -37,8 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        selection = 0;
-        state = true;
+        shoutOut = Toast.makeText(this, "Follow Discord and Twitter for updates!\nTwitter: @JCGreen\nDiscord: ", Toast.LENGTH_LONG);
+        shoutOut.setGravity(Gravity.BOTTOM, 0, 0);
+        shoutOut.show();
+
 
         detector = new GestureDetector(this, this);
 
@@ -113,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == play || view == play_button) {
-            Intent i = new Intent(MainActivity.this, dokkan_summon.class);
+            Intent i = new Intent(MainActivity.this, Dokkan_Summon.class);
             background_audio.release();
             startActivity(i);
             finish();

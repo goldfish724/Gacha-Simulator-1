@@ -4,12 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_splash_all"
+        android:icon="@mipmap/ic_launcher_icon"
         android:label="Gacha 4"
-        android:roundIcon="@drawable/ic_splash_all"
+        android:roundIcon="@mipmap/ic_launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dokkan_summon" />
+        <activity android:name=".Dokkan_Summon_History"></activity>
+        <activity android:name=".Dokkan_Summon" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

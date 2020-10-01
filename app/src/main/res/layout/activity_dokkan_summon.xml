@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_summon_background"
     android:isScrollContainer="false"
-    tools:context=".dokkan_summon">
+    tools:context=".Dokkan_Summon">
 
     <ImageView
         android:id="@+id/slot1"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/slot2"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -34,8 +34,8 @@
 
     <ImageView
         android:id="@+id/slot3"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -46,8 +46,8 @@
 
     <ImageView
         android:id="@+id/slot4"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/slot5"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/slot6"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -82,8 +82,8 @@
 
     <ImageView
         android:id="@+id/slot7"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -94,8 +94,8 @@
 
     <ImageView
         android:id="@+id/slot8"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -106,8 +106,8 @@
 
     <ImageView
         android:id="@+id/slot9"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -118,8 +118,8 @@
 
     <ImageView
         android:id="@+id/slot10"
-        android:layout_width="58dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -167,7 +167,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/single_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/single_button"
         app:srcCompat="@drawable/dokkan_multi_summon" />
@@ -215,7 +215,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/summon_history"
+        android:id="@+id/summon_history_dokkan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
