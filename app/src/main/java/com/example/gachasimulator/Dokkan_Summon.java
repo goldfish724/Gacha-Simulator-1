@@ -23,13 +23,18 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     MediaPlayer background_audio2;
     ImageButton mute_button, home_button, multi_summon, single_summon;
     ImageView bannerImage;
+    Boolean state = true;
+    public static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled;
     static HashSet<Card> cardsPulledHash;
+    static ImageView[] unitsSlots;
+
+    int bannerChoice, stonesUsed = 0;
+
     DokkanBanner[] banners;
     GestureDetector detector;
-    int bannerChoice, stonesUsed = 0;
+
     TextView stoneCount, resetButton, summonHistoryButton;
-    static ImageView[] unitsSlots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
 
         multi_summon = findViewById(R.id.multi_button);
         multi_summon.setOnClickListener(this);
+
         single_summon = findViewById(R.id.single_button);
         single_summon.setOnClickListener(this);
 
@@ -81,14 +87,21 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                 findViewById(R.id.slot6), findViewById(R.id.slot7), findViewById(R.id.slot8), findViewById(R.id.slot9), findViewById(R.id.slot10),};
         mute_button = findViewById(R.id.volume_control);
         mute_button.setOnClickListener(this);
+
+        if (!volume_state) {
+            background_audio2.setVolume(0f, 0f);
+            mute_button.setImageResource(R.drawable.ic_mute_icon);
+        }
     }
 
     public void onPause() {
+        if (state)
+            background_audio2.pause();
         super.onPause();
-        background_audio2.pause();
     }
 
     public void onResume() {
+        state = true;
         super.onResume();
         if (!background_audio2.isPlaying())
             background_audio2.start();
@@ -101,12 +114,15 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             if (mute_button.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.no_mute).getConstantState())) {
                 mute_button.setImageResource(R.drawable.ic_mute_icon);
                 background_audio2.setVolume(0, 0);
+                volume_state = false;
             } else {
                 mute_button.setImageResource(R.drawable.no_mute);
                 background_audio2.setVolume(1.0f, 1.0f);
+                volume_state = true;
             }
         } else if (view == home_button) {
             background_audio2.release();
+            state = false;
             Intent i = new Intent(Dokkan_Summon.this, MainActivity.class);
             startActivity(i);
             finish();
@@ -134,9 +150,12 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             background_audio2.release();
             Intent i = new Intent(Dokkan_Summon.this, Dokkan_Summon_History.class);
             startActivity(i);
+            state = false;
+            Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
             finish();
         }
     }
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         detector.onTouchEvent(motionEvent);
@@ -186,13 +205,5 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             }
         }
         return true;
-    }
-
-    public static HashSet<Card> getCardsPulledHash() {
-        return cardsPulledHash;
-    }
-
-    public static ArrayList<Card> getCardsPulled() {
-        return cardsPulled;
     }
 }

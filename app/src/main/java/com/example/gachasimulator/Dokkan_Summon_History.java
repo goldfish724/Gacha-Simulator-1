@@ -6,19 +6,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Dokkan_Summon_History extends AppCompatActivity implements View.OnClickListener {
-    TextView[] frequency;
-    ConstraintLayout mainView;
+    RecyclerView recyclerView;
     MediaPlayer background_audio3;
     TextView back;
+    ImageButton mute_button;
+    Boolean state = true;
     ImageView back_arrow;
-    int tracker = 0;
+    static ArrayList<Card> cards;
+    static HashSet<Card> cardsHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +48,66 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
         background_audio3.setLooping(true);
         background_audio3.start();
 
-        //USE LINEAR LAYOUT (HORIZONTAL)
-        mainView = findViewById(R.id.display_dokkan_summon_history);
-//        frequency = new TextView[Dokkan_Summon.getCardsPulledHash().size()];
-//
-//        for(Card card : Dokkan_Summon.getCardsPulledHash())
-//        {
-//
-//        }
+
+        mute_button = findViewById(R.id.volume_control2);
+        mute_button.setOnClickListener(this);
+
+        if (!Dokkan_Summon.volume_state) {
+            mute_button.setImageResource(R.drawable.ic_mute_icon);
+            background_audio3.setVolume(0f, 0f);
+        }
+
+        recyclerView = findViewById(R.id.recycler_dokkan);
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setFlexWrap(FlexWrap.WRAP);
+        layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+        layoutManager.setAlignItems(AlignItems.CENTER);
+        recyclerView.setLayoutManager(layoutManager);
+//        RecyclerView.Adapter adapter =  new ArrayAdapter<Card>(this);
+
+
     }
 
     @Override
     public void onClick(View view) {
-        background_audio3.release();
-        Intent i = new Intent(Dokkan_Summon_History.this, Dokkan_Summon.class);
-        startActivity(i);
-        finish();
+        if (view == mute_button) {
+            if (mute_button.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.no_mute).getConstantState())) {
+                mute_button.setImageResource(R.drawable.ic_mute_icon);
+                background_audio3.setVolume(0, 0);
+                Dokkan_Summon.volume_state = false;
+            } else {
+                mute_button.setImageResource(R.drawable.no_mute);
+                background_audio3.setVolume(1.0f, 1.0f);
+                Dokkan_Summon.volume_state = true;
+            }
+        } else if (view == back || view == back_arrow) {
+            background_audio3.release();
+            Intent i = new Intent(Dokkan_Summon_History.this, Dokkan_Summon.class);
+            startActivity(i);
+            state = false;
+            finish();
+        }
+
+    }
+
+    public static void setLists(ArrayList<Card> list, HashSet<Card> list2) {
+        cards = new ArrayList<>();
+        cards.addAll(list);
+        cardsHash = new HashSet<>();
+        cardsHash.addAll(cardsHash);
+    }
+
+    public void onPause() {
+        if (state)
+            background_audio3.pause();
+        super.onPause();
+    }
+
+    public void onResume() {
+        state = true;
+        super.onResume();
+        if (!background_audio3.isPlaying())
+            background_audio3.start();
     }
 }

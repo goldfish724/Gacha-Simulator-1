@@ -1,20 +1,20 @@
 package com.example.gachasimulator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class splashScreen extends AppCompatActivity {
     private ImageView container;
     private AnimationDrawable ani;
+    private Toast shoutOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,9 @@ public class splashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
+
+        shoutOut = Toast.makeText(this, "Follow Discord and Twitter for updates!\nTwitter: @JCGreen\nDiscord: ", Toast.LENGTH_LONG);
+        shoutOut.show();
 
         new Handler().postDelayed(new Runnable() {
             @Override
