@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Dokkan_Summon_History"></activity>
+        <activity android:name=".ViewHolderLayout"></activity>
+        <activity android:name=".Dokkan_Summon_History" />
         <activity android:name=".Dokkan_Summon" />
         <activity
             android:name=".MainActivity"
