@@ -24,12 +24,12 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     ImageButton mute_button, home_button, multi_summon, single_summon;
     ImageView bannerImage;
     Boolean state = true;
-    public static Boolean volume_state = true;
-    static ArrayList<Card> cardsPulled;
-    static HashSet<Card> cardsPulledHash;
+    static Boolean volume_state = true;
+    static ArrayList<Card> cardsPulled = new ArrayList<>();
+    static HashSet<Card> cardsPulledHash = new HashSet<>();
     static ImageView[] unitsSlots;
 
-    int bannerChoice, stonesUsed = 0;
+    static int bannerChoice = 0, stonesUsed = 0;
 
     DokkanBanner[] banners;
     GestureDetector detector;
@@ -44,7 +44,6 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dokkan_summon);
 
-        bannerChoice = 0;
         DokkanBanner df_8442 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020440, 1020270, 1019130, 1018750, 1017880, 1015740, 1015150, 1012880, 1012580, 1008410))),
                 DokkanBanner.customizePool(new ArrayList<>(Arrays.asList(1020520, 1020270)), null, DokkanBanner.NORMALPOOL), "DOKKAN FESTIVAL (A) 8442");
 
@@ -66,9 +65,6 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         single_summon = findViewById(R.id.single_button);
         single_summon.setOnClickListener(this);
 
-        cardsPulledHash = new HashSet<>();
-        cardsPulled = new ArrayList<>();
-
         bannerImage = findViewById(R.id.banner_image);
         bannerImage.setImageResource(banners[bannerChoice].getImage());
         bannerImage.setOnTouchListener(this);
@@ -82,6 +78,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         home_button.setOnClickListener(this);
 
         stoneCount = findViewById(R.id.stones_used);
+        stoneCount.setText(Integer.toString(stonesUsed));
 
         unitsSlots = new ImageView[]{findViewById(R.id.slot1), findViewById(R.id.slot2), findViewById(R.id.slot3), findViewById(R.id.slot4), findViewById(R.id.slot5),
                 findViewById(R.id.slot6), findViewById(R.id.slot7), findViewById(R.id.slot8), findViewById(R.id.slot9), findViewById(R.id.slot10),};
@@ -138,10 +135,14 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         } else if (view == single_summon) {
             Card result = banners[bannerChoice].singleSummon();
             unitsSlots[0].setImageResource(result.getCardImage());
+            cardsPulled.add(result);
+            cardsPulledHash.add(result);
             stonesUsed += 5;
             stoneCount.setText(Integer.toString(stonesUsed));
         } else if (view == resetButton) {
             stonesUsed = 0;
+            cardsPulledHash.clear();
+            cardsPulled.clear();
             for (ImageView views : unitsSlots)
                 views.setImageResource(android.R.color.transparent);
 

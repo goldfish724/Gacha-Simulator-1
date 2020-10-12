@@ -20,6 +20,7 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -57,7 +58,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
             mute_button.setImageResource(R.drawable.ic_mute_icon);
             background_audio3.setVolume(0f, 0f);
         }
-        //FIX!!
+
         if (!cardsHash.isEmpty()) {
             frequencies = new ArrayList<>();
             for (Card c : cardsHash)
@@ -68,7 +69,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
-        layoutManager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+        layoutManager.setJustifyContent(JustifyContent.FLEX_START);
         layoutManager.setAlignItems(AlignItems.FLEX_START);
 
         recyclerView = findViewById(R.id.recycler_dokkan);
@@ -104,10 +105,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
         cards.addAll(list);
         cardsHash = new ArrayList<>();
         cardsHash.addAll(list2);
-        while (cardsHash.contains(DokkanBanner.SR) || cardsHash.contains(DokkanBanner.RARE)) {
-            cardsHash.remove(DokkanBanner.SR);
-            cards.remove(DokkanBanner.RARE);
-        }
+        cardsHash.removeAll(Arrays.asList(DokkanBanner.RARE, DokkanBanner.SR));
     }
 
     public void onPause() {

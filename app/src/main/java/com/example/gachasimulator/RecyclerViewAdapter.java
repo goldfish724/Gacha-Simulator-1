@@ -32,7 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.cardImage.setImageResource(cards.get(position).getCardImage());
-        holder.cardCount.setText(imageNames.get(position));
+        holder.cardCount.setText("x" + imageNames.get(position));
     }
 
     @Override
