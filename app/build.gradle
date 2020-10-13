@@ -31,5 +31,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.android:flexbox:2.0.1'
+    implementation 'com.eightbitlab:blurview:1.6.3'
 
 }

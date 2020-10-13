@@ -2,11 +2,13 @@ package com.example.gachasimulator;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -19,10 +21,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
+
 public class Dokkan_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener {
     MediaPlayer background_audio2;
     ImageButton mute_button, home_button, multi_summon, single_summon;
     ImageView bannerImage;
+    BlurView blurView;
     Boolean state = true;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
@@ -64,6 +70,17 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
 
         single_summon = findViewById(R.id.single_button);
         single_summon.setOnClickListener(this);
+
+        blurView = findViewById(R.id.blurView1);
+        View decorView = getWindow().getDecorView();
+        ViewGroup rootView = decorView.findViewById(android.R.id.content);
+        Drawable windowBackground = decorView.getBackground();
+        blurView.setupWith(rootView)
+                .setFrameClearDrawable(windowBackground)
+                .setBlurAlgorithm(new RenderScriptBlur(this))
+                .setBlurRadius(22f)
+                .setBlurEnabled(false)
+                .setHasFixedTransformationMatrix(true);
 
         bannerImage = findViewById(R.id.banner_image);
         bannerImage.setImageResource(banners[bannerChoice].getImage());
@@ -120,7 +137,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         } else if (view == home_button) {
             background_audio2.release();
             state = false;
-            Intent i = new Intent(Dokkan_Summon.this, MainActivity.class);
+            Intent i = new Intent(Dokkan_Summon.this, HomeScreen.class);
             startActivity(i);
             finish();
         } else if (view == multi_summon) {
@@ -133,12 +150,15 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             stonesUsed += 50;
             stoneCount.setText(Integer.toString(stonesUsed));
         } else if (view == single_summon) {
+            for (ImageView views : unitsSlots)
+                views.setImageResource(android.R.color.transparent);
             Card result = banners[bannerChoice].singleSummon();
             unitsSlots[0].setImageResource(result.getCardImage());
             cardsPulled.add(result);
             cardsPulledHash.add(result);
             stonesUsed += 5;
             stoneCount.setText(Integer.toString(stonesUsed));
+            blurView.setBlurEnabled(true);
         } else if (view == resetButton) {
             stonesUsed = 0;
             cardsPulledHash.clear();

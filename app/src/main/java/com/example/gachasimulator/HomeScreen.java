@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener {
+public class HomeScreen extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener {
     boolean state;
     GestureDetector detector;
     MediaPlayer background_audio;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main.setOnTouchListener(this);
 
 
-        background_audio= MediaPlayer.create(MainActivity.this,audio_id[selection]);
+        background_audio = MediaPlayer.create(HomeScreen.this, audio_id[selection]);
         background_audio.setLooping(true);
         background_audio.start();
 
@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                    background_audio.reset();
-                    background_audio = MediaPlayer.create(MainActivity.this, audio_id[selection]);
-                    background_audio.setLooping(true);
+                background_audio.reset();
+                background_audio = MediaPlayer.create(HomeScreen.this, audio_id[selection]);
+                background_audio.setLooping(true);
                 if (state)
                     background_audio.start();
                 }
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == play || view == play_button) {
-            Intent i = new Intent(MainActivity.this, Dokkan_Summon.class);
+            Intent i = new Intent(HomeScreen.this, Dokkan_Summon.class);
             background_audio.release();
             state = false;
             startActivity(i);
