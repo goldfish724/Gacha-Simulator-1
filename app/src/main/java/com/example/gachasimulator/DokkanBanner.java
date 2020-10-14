@@ -8,8 +8,8 @@ public class DokkanBanner {
     int image;
     String name;
     public ArrayList<Card> featured, unfeatured;
-    private final Card RARE = new Card(R.drawable.dokkan_rare_icon, 0);
-    private final Card SR = new Card(R.drawable.dokkan_sr_icon, 1);
+    public static final Card RARE = new Card(R.drawable.dokkan_rare_icon, 0);
+    public static final Card SR = new Card(R.drawable.dokkan_sr_icon, 1);
     public static final ArrayList<Card> NORMALPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1000010_1, 1000010), new Card(R.drawable.thum_1000020_1, 1000020), new Card(R.drawable.thum_1000840_1, 1000840),
             new Card(R.drawable.thum_1001390_1, 1001390), new Card(R.drawable.thum_1001400_1, 1001400), new Card(R.drawable.thum_1001480_1, 1001480),
             new Card(R.drawable.thum_1001490_1, 1001490), new Card(R.drawable.thum_1001590_1, 1001590), new Card(R.drawable.thum_1001630_1, 1001630),
@@ -56,7 +56,8 @@ public class DokkanBanner {
             new Card(R.drawable.card_1017210_thumb, 1017210), new Card(R.drawable.card_1017460_thumb, 1017460), new Card(R.drawable.card_1017560_thumb, 1017560), new Card(R.drawable.card_1017580_thumb, 1017580), new Card(R.drawable.card_1017690_thumb, 1017690),
             new Card(R.drawable.card_1018050_thumb, 1018050), new Card(R.drawable.card_1018090_thumb, 1018090), new Card(R.drawable.card_1018140_thumb, 1018140), new Card(R.drawable.card_1018570_thumb, 1018570), new Card(R.drawable.card_1018670_thumb, 1018670),
             new Card(R.drawable.card_1019030_thumb, 1019030), new Card(R.drawable.card_1019270_thumb, 1019270), new Card(R.drawable.card_1019290_thumb, 1019290), new Card(R.drawable.card_1019350_thumb, 1019350), new Card(R.drawable.card_1019830_thumb, 1019830),
-            new Card(R.drawable.thum_2000170_1, 2000170), new Card(R.drawable.thum_2000230_1, 2000230), new Card(R.drawable.thum_2000240_1, 2000240), new Card(R.drawable.thum_2000250_1, 2000250), new Card(R.drawable.card_1020270_thumb, 1020270), new Card(R.drawable.card_1020520_thumb, 1020520)));
+            new Card(R.drawable.thum_2000170_1, 2000170), new Card(R.drawable.thum_2000230_1, 2000230), new Card(R.drawable.thum_2000240_1, 2000240), new Card(R.drawable.thum_2000250_1, 2000250), new Card(R.drawable.card_1020270_thumb, 1020270),
+            new Card(R.drawable.card_1020520_thumb, 1020520), new Card(R.drawable.card_1020120_thumb, 1020120), new Card(R.drawable.card_1020020_thumb, 1020020), new Card(R.drawable.card_1020000_thumb, 1020000)));
 
     public static final ArrayList<Card> DOKKANFESTPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thum_1002800_1, 1002800), new Card(R.drawable.card_1003070, 1003070), new Card(R.drawable.thum_1003240_1, 1003240), new Card(R.drawable.thum_1003300_1, 1003300), new Card(R.drawable.thum_1003320_1, 1003320),
             new Card(R.drawable.thum_1003770_1, 1003770), new Card(R.drawable.thum_1004220_1, 1004220), new Card(R.drawable.thum_1005270_1, 1005270), new Card(R.drawable.thumb_1005630, 1005630), new Card(R.drawable.card_1005990, 1005990), new Card(R.drawable.thum_1006410, 1006410),
@@ -72,7 +73,7 @@ public class DokkanBanner {
             new Card(R.drawable.card_1018630_thumb, 1018630), new Card(R.drawable.card_1018750_thumb, 1018750), new Card(R.drawable.card_1015760_thumb, 1015760), new Card(R.drawable.card_1017110_thumb, 1017110), new Card(R.drawable.card_1015740_thumb, 1015740), new Card(R.drawable.card_1017070_thumb, 1017070),
             new Card(R.drawable.card_1017880_thumb, 1017880), new Card(R.drawable.thumb_1012910, 1012910), new Card(R.drawable.card_1020350_thumb, 1020350), new Card(R.drawable.card_1018530_thumb, 1018530), new Card(R.drawable.card_1019330_thumb, 1019330), new Card(R.drawable.card_1018260_thumb, 1018260),
             new Card(R.drawable.card_1017610_thumb, 1017610), new Card(R.drawable.card_1019130_thumb, 1019130), new Card(R.drawable.card_1019970_thumb, 1019970), new Card(R.drawable.card_1016790_thumb, 1016790), new Card(R.drawable.card_1019620_thumb, 1019620), new Card(R.drawable.card_1019580_thumb, 1019580),
-            new Card(R.drawable.card_1020080_thumb, 1020080), new Card(R.drawable.card_1019730_thumb, 1019730), new Card(R.drawable.card_1020440_thumb, 1020440)));
+            new Card(R.drawable.card_1020080_thumb, 1020080), new Card(R.drawable.card_1019730_thumb, 1019730), new Card(R.drawable.card_1020440_thumb, 1020440), new Card(R.drawable.card_1020490_thumb, 1020490)));
 
     public static final ArrayList<Card> SUMMONABLELRPOOL = new ArrayList<>(Arrays.asList(new Card(R.drawable.thumb_1014920, 1014920), new Card(R.drawable.thumb_1014000, 1014000), new Card(R.drawable.thumb_1012140, 1012140), new Card(R.drawable.thum_1011620, 1011620), new Card(R.drawable.card_1020200_thumb, 1020200),
             new Card(R.drawable.card_1019800_thumb, 1019800), new Card(R.drawable.card_1019380_thumb, 1019380), new Card(R.drawable.card_1018980_thumb, 1018980), new Card(R.drawable.card_1018860_thumb, 1018860), new Card(R.drawable.card_1018470_thumb, 1018470), new Card(R.drawable.card_1018230_thumb, 1018230),

@@ -172,22 +172,8 @@
         app:layout_constraintTop_toTopOf="@+id/single_button"
         app:srcCompat="@drawable/dokkan_multi_summon" />
 
-    <ImageButton
-        android:id="@+id/home_button"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"
-        android:background="#00FFFFFF"
-        android:contentDescription="@android:string/untitled"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_home_button" />
-
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/dragonStoneIcon"
         android:layout_width="37dp"
         android:layout_height="42dp"
         android:layout_marginStart="10dp"
@@ -246,9 +232,23 @@
         android:textSize="24sp"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon"
+        app:layout_constraintStart_toEndOf="@+id/dragonStoneIcon"
+        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon" />
+
+    <TextView
+        android:id="@+id/dokkan_summon_swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="@string/SwipePrompt"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/banner_image"
+        app:layout_constraintEnd_toEndOf="@+id/banner_image"
+        app:layout_constraintStart_toStartOf="@+id/banner_image" />
 
     <ImageButton
         android:id="@+id/volume_control"
@@ -264,18 +264,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no_mute" />
 
-    <TextView
-        android:id="@+id/dokkan_summon_swipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/home_button"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="@string/SwipePrompt"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/banner_image"
-        app:layout_constraintEnd_toEndOf="@+id/banner_image"
-        app:layout_constraintStart_toStartOf="@+id/banner_image" />
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_home_button" />
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ExtraText"></eightbitlab.com.blurview.BlurView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
