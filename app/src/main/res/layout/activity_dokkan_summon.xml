@@ -278,14 +278,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_home_button" />
 
-    <eightbitlab.com.blurview.BlurView
-        android:id="@+id/blurView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/stat_slider"
+        android:layout_width="407dp"
+        android:layout_height="410dp"
+        android:layout_marginTop="68dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ExtraText"></eightbitlab.com.blurview.BlurView>
+        app:layout_constraintTop_toBottomOf="@+id/anchor"
+        app:srcCompat="@drawable/ic_stats_slider" />
+
+    <TextView
+        android:id="@+id/anchor"
+        android:layout_width="9dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="244dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/stats_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Stats"
+        android:textColor="#FFFFFF"
+        android:textSize="56sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/anchor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
