@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_summon_background"
     android:isScrollContainer="false"
-    tools:context=".Dokkan_Summon">
+    tools:context=".Dokkan_Summon"
+    tools:ignore="MissingDefaultResource">
 
     <ImageView
         android:id="@+id/slot1"
@@ -201,6 +202,21 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:id="@+id/stats_dokkan2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:text="Stats"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slot8" />
+
+    <TextView
         android:id="@+id/summon_history_dokkan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -212,21 +228,6 @@
         app:layout_constraintBottom_toTopOf="@+id/home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot8" />
-
-    <TextView
-        android:id="@+id/stats_dokkan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@android:string/untitled"
-        android:fontFamily="@font/archivo_black"
-        android:text="Stats"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
@@ -294,7 +295,7 @@
         app:srcCompat="@drawable/ic_home_button" />
 
     <View
-        android:id="@+id/slider_backdrop_dokkan"
+        android:id="@+id/slider_backdrop"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0.5"
@@ -343,7 +344,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/anchor2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_close_button" />
 
@@ -356,7 +357,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.32" />
 
     <TextView
         android:id="@+id/anchor2"
@@ -367,7 +368,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <TextView
         android:id="@+id/stats_label"

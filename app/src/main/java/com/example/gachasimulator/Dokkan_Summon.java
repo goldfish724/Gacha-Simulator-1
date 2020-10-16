@@ -26,21 +26,20 @@ import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class Dokkan_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener {
     MediaPlayer background_audio2;
-    ImageButton mute_button, home_button, multi_summon, single_summon;
+    ImageButton mute_button, home_button, multi_summon, single_summon, cancel_button;
     ImageView bannerImage;
+    TextView stoneCount, resetButton, summonHistoryButton, stats;
+    TextView[] statsSlots;
     BlurView blurView;
     Boolean state = true;
+    View backDrop;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
     static HashSet<Card> cardsPulledHash = new HashSet<>();
     static ImageView[] unitsSlots;
-
-    static int bannerChoice = 0, stonesUsed = 0;
-
+    static int bannerChoice = 0, stonesUsed = 0, ssrsPulled = 0, unitsPulled = 0, featuredPulled = 0, multiSSRs = 0, singleSSRs = 0, multiCount = 0, singleCount = 0;
     DokkanBanner[] banners;
     GestureDetector detector;
-
-    TextView stoneCount, resetButton, summonHistoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +57,9 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
 
         banners = new DokkanBanner[]{df_8442, ls_8456};
 
+        statsSlots = new TextView[]{findViewById(R.id.stat_1A_d), findViewById(R.id.stat_2A_d), findViewById(R.id.stat_3A_d), findViewById(R.id.stat_4A_d),
+                findViewById(R.id.stat_5A_d), findViewById(R.id.stat_6A_d), findViewById(R.id.stat_7A_d), findViewById(R.id.stat_8A_d)};
+
         background_audio2 = MediaPlayer.create(Dokkan_Summon.this, R.raw.dokkan_summon_theme_audio);
         background_audio2.setLooping(true);
         background_audio2.start();
@@ -71,6 +73,15 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         single_summon = findViewById(R.id.single_button);
         single_summon.setOnClickListener(this);
 
+        cancel_button = findViewById(R.id.cancel_button_d);
+        cancel_button.setOnClickListener(this);
+
+        stats = findViewById(R.id.stats_dokkan);
+        stats.setOnClickListener(this);
+
+        backDrop = findViewById(R.id.slider_backdrop_dokkan);
+        backDrop.setVisibility(View.INVISIBLE);
+
         blurView = findViewById(R.id.blurView1);
         View decorView = getWindow().getDecorView();
         ViewGroup rootView = decorView.findViewById(android.R.id.content);
@@ -79,7 +90,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                 .setFrameClearDrawable(windowBackground)
                 .setBlurAlgorithm(new RenderScriptBlur(this))
                 .setBlurRadius(22f)
-                .setBlurEnabled(false)
+                .setBlurEnabled(true)
                 .setHasFixedTransformationMatrix(true);
 
         bannerImage = findViewById(R.id.banner_image);
@@ -141,26 +152,50 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             startActivity(i);
             finish();
         } else if (view == multi_summon) {
+
             Card[] results = banners[bannerChoice].multiSummon();
             for (int i = 0; i < 10; i++) {
+                if (results[i] != DokkanBanner.SR || results[i] != DokkanBanner.RARE) {
+                    multiSSRs++;
+                    ssrsPulled++;
+                    if (banners[bannerChoice].featured.contains(results[i]))
+                        featuredPulled++;
+                }
                 unitsSlots[i].setImageResource(results[i].getCardImage());
             }
             cardsPulled.addAll(Arrays.asList(results));
             cardsPulledHash.addAll(Arrays.asList(results));
+            multiCount++;
+            unitsPulled += 10;
             stonesUsed += 50;
             stoneCount.setText(Integer.toString(stonesUsed));
         } else if (view == single_summon) {
             for (ImageView views : unitsSlots)
                 views.setImageResource(android.R.color.transparent);
             Card result = banners[bannerChoice].singleSummon();
+            if (result != DokkanBanner.SR && result != DokkanBanner.RARE) {
+                singleSSRs++;
+                ssrsPulled++;
+                if (banners[bannerChoice].featured.contains(result))
+                    featuredPulled++;
+            }
             unitsSlots[0].setImageResource(result.getCardImage());
             cardsPulled.add(result);
             cardsPulledHash.add(result);
+            singleCount++;
+            unitsPulled++;
             stonesUsed += 5;
             stoneCount.setText(Integer.toString(stonesUsed));
             blurView.setBlurEnabled(true);
         } else if (view == resetButton) {
             stonesUsed = 0;
+            ssrsPulled = 0;
+            unitsPulled = 0;
+            featuredPulled = 0;
+            multiSSRs = 0;
+            singleSSRs = 0;
+            multiCount = 0;
+            singleCount = 0;
             cardsPulledHash.clear();
             cardsPulled.clear();
             for (ImageView views : unitsSlots)
@@ -174,6 +209,16 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             state = false;
             Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
             finish();
+        } else if (view == stats) {
+            backDrop.setVisibility(View.VISIBLE);
+            statsSlots[0].setText(String.valueOf(ssrsPulled));
+            statsSlots[1].setText(String.valueOf(Math.round(((float) stonesUsed) / ssrsPulled)));
+            statsSlots[2].setText(("%" + String.format("%00.1f", (float) ssrsPulled / unitsPulled * 100)));
+            statsSlots[3].setText(("%" + String.format("%00.1f", (float) featuredPulled / unitsPulled * 100)));
+            statsSlots[4].setText(String.valueOf(unitsPulled));
+            statsSlots[5].setText(String.valueOf(featuredPulled));
+            statsSlots[6].setText((String.format("%00.1f", (float) multiSSRs / multiCount)));
+            statsSlots[7].setText((String.format("%00.1f", (float) singleSSRs / singleCount)));
         }
     }
 
