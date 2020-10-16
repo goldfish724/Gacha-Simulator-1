@@ -5,21 +5,31 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.transition.ChangeBounds;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Locale;
 
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderScriptBlur;
@@ -30,6 +40,10 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     ImageView bannerImage;
     TextView stoneCount, resetButton, summonHistoryButton, stats;
     TextView[] statsSlots;
+    ConstraintLayout constraintLayout;
+    ConstraintSet constraintSet1 = new ConstraintSet();
+    ConstraintSet constraintSet2 = new ConstraintSet();
+    Transition transition = new ChangeBounds();
     BlurView blurView;
     Boolean state = true;
     View backDrop;
@@ -47,6 +61,8 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
+        constraintSet1.clone(this, R.layout.activity_dokkan_summon);
+        constraintSet2.clone(this, R.layout.activity_dokkan_summon_animation);
         setContentView(R.layout.activity_dokkan_summon);
 
         DokkanBanner df_8442 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020440, 1020270, 1019130, 1018750, 1017880, 1015740, 1015150, 1012880, 1012580, 1008410))),
@@ -80,7 +96,6 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         stats.setOnClickListener(this);
 
         backDrop = findViewById(R.id.slider_backdrop_dokkan);
-        backDrop.setVisibility(View.INVISIBLE);
 
         blurView = findViewById(R.id.blurView1);
         View decorView = getWindow().getDecorView();
@@ -90,7 +105,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                 .setFrameClearDrawable(windowBackground)
                 .setBlurAlgorithm(new RenderScriptBlur(this))
                 .setBlurRadius(22f)
-                .setBlurEnabled(true)
+                .setBlurEnabled(false)
                 .setHasFixedTransformationMatrix(true);
 
         bannerImage = findViewById(R.id.banner_image);
@@ -112,6 +127,11 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                 findViewById(R.id.slot6), findViewById(R.id.slot7), findViewById(R.id.slot8), findViewById(R.id.slot9), findViewById(R.id.slot10),};
         mute_button = findViewById(R.id.volume_control);
         mute_button.setOnClickListener(this);
+
+        constraintLayout = findViewById(R.id.dokkan_summon_root);
+
+        transition.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
+        transition.setDuration(1000);
 
         if (!volume_state) {
             background_audio2.setVolume(0f, 0f);
@@ -152,10 +172,9 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             startActivity(i);
             finish();
         } else if (view == multi_summon) {
-
             Card[] results = banners[bannerChoice].multiSummon();
             for (int i = 0; i < 10; i++) {
-                if (results[i] != DokkanBanner.SR || results[i] != DokkanBanner.RARE) {
+                if (results[i] != DokkanBanner.SR && results[i] != DokkanBanner.RARE) {
                     multiSSRs++;
                     ssrsPulled++;
                     if (banners[bannerChoice].featured.contains(results[i]))
@@ -186,7 +205,6 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             unitsPulled++;
             stonesUsed += 5;
             stoneCount.setText(Integer.toString(stonesUsed));
-            blurView.setBlurEnabled(true);
         } else if (view == resetButton) {
             stonesUsed = 0;
             ssrsPulled = 0;
@@ -210,15 +228,64 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
             finish();
         } else if (view == stats) {
-            backDrop.setVisibility(View.VISIBLE);
             statsSlots[0].setText(String.valueOf(ssrsPulled));
-            statsSlots[1].setText(String.valueOf(Math.round(((float) stonesUsed) / ssrsPulled)));
-            statsSlots[2].setText(("%" + String.format("%00.1f", (float) ssrsPulled / unitsPulled * 100)));
-            statsSlots[3].setText(("%" + String.format("%00.1f", (float) featuredPulled / unitsPulled * 100)));
+            if (ssrsPulled != 0)
+                statsSlots[1].setText(String.valueOf(Math.round((float) stonesUsed / ssrsPulled * 100) / 100f));
+            else
+                statsSlots[1].setText("N/A");
+
+            if (unitsPulled != 0) {
+                statsSlots[2].setText(("%" + String.format(Locale.getDefault(), "%.1f", (float) ssrsPulled / unitsPulled * 100)));
+                statsSlots[3].setText(("%" + String.format(Locale.getDefault(), "%.1f", (float) featuredPulled / unitsPulled * 100)));
+            } else {
+                statsSlots[2].setText("%0");
+                statsSlots[3].setText("%0");
+            }
             statsSlots[4].setText(String.valueOf(unitsPulled));
             statsSlots[5].setText(String.valueOf(featuredPulled));
-            statsSlots[6].setText((String.format("%00.1f", (float) multiSSRs / multiCount)));
-            statsSlots[7].setText((String.format("%00.1f", (float) singleSSRs / singleCount)));
+            if (multiCount != 0)
+                statsSlots[6].setText((String.format(Locale.getDefault(), "%.1f", (float) multiSSRs / multiCount)));
+            else
+                statsSlots[6].setText("0");
+            if (singleCount != 0)
+                statsSlots[7].setText((String.format(Locale.getDefault(), "%.1f", (float) singleSSRs / singleCount)));
+            else
+                statsSlots[7].setText("0");
+
+            multi_summon.setEnabled(false);
+            single_summon.setEnabled(false);
+            resetButton.setEnabled(false);
+            home_button.setEnabled(false);
+            mute_button.setEnabled(false);
+            cancel_button.setEnabled(true);
+            view.setEnabled(false);
+            blurView.setBlurEnabled(true);
+            backDrop.setVisibility(View.VISIBLE);
+            backDrop.setAlpha(0f);
+            backDrop.animate().alpha(0.3f).setDuration(1000);
+            TransitionManager.beginDelayedTransition(constraintLayout, transition);
+            constraintSet2.applyTo(constraintLayout);
+        } else if (view == cancel_button) {
+            multi_summon.setEnabled(true);
+            single_summon.setEnabled(true);
+            resetButton.setEnabled(true);
+            home_button.setEnabled(true);
+            mute_button.setEnabled(true);
+            stats.setEnabled(true);
+            view.setEnabled(false);
+
+            backDrop.setAlpha(1f);
+            Animation fadeOut = new AlphaAnimation(0.3f, 0);
+            fadeOut.setDuration(2000);
+            backDrop.startAnimation(fadeOut);
+            TransitionManager.beginDelayedTransition(constraintLayout, transition);
+            constraintSet1.applyTo(constraintLayout);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    blurView.setBlurEnabled(false);
+                }
+            }, 500);
         }
     }
 

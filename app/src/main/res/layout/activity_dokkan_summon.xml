@@ -2,11 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dokkan_summon_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_summon_background"
-    android:isScrollContainer="false"
-    tools:context=".Dokkan_Summon">
+    tools:context=".Dokkan_Summon"
+    android:configChanges="keyboardHidden"
+    android:screenOrientation="portrait">
 
     <ImageView
         android:id="@+id/slot1"
@@ -297,7 +299,6 @@
         android:id="@+id/slider_backdrop_dokkan"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:alpha="0.5"
         android:background="#c7c7cc"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
